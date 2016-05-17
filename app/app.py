@@ -2,10 +2,13 @@ from flask import Flask, g
 from flask.ext.sqlalchemy import SQLAlchemy
 from config import Configuration
 from flask.ext.login import LoginManger, current_user
+from flask.ext.bcrypt import Bcrypt
+
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
 login_manager = LoginManger(app)
 login_manager.login_view = "login"

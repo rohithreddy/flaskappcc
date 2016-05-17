@@ -1,0 +1,22 @@
+{
+  "name": "flaskappcc",
+  "authors": [
+    "rohith <rohith.reddy@customercentria.com>"
+  ],
+  "description": "CC test App",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "polymer": "Polymer/Polymer#^1.4.0"
+  }
+}

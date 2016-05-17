@@ -4,17 +4,16 @@ from models import Person
 
 
 class LoginForm(wtforms.Form):
-    email = wtforms.StringField("Email", validators=[validators.data_required()])
-    password = wtforms.PasswordField("Password",validators=[validators.DataRequired])
-    remember_me = wtforms.BooleanField("Remember me?",default=True)
+    email = wtforms.StringField("Email", validators=[validators.DataRequired()])
+    password = wtforms.PasswordField("Password", validators=[validators.DataRequired()])
+    remember_me = wtforms.BooleanField("Remember me?", default=True)
 
     def validate(self):
-        if not super(LoginForm,self).validate():
+        if not super(LoginForm, self).validate():
             return False
 
-        self.person = Person.authenticate(self.email.data, self.password.data)
-
-        if not self.person:
-            self.email.errors.append("Invalid email address or Password")
+        self.user = Person.authenticate(self.email.data, self.password.data)
+        if not self.user:
+            self.email.errors.append("Invalid email or password.")
             return False
         return True

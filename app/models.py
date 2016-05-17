@@ -32,7 +32,7 @@ class Person(db.Model):
 
     # Flask-Login Interface
     def get_id(self):
-        return unicode(self.id)
+        return str(self.id)
 
 
     def is_authenticated(self):

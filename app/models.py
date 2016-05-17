@@ -9,7 +9,7 @@ def _user_loader(user_id):
     return Person.query.get(int(user_id))
 
 class Person(db.Model):
-    __tablename__ = 'users'
+    #__tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))

@@ -5,5 +5,3 @@ class Configuration(object):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = "sqlite:///%s/ccapp.db" % APPLICATION_DIR
     SECRET_KEY = "stuff"
-
-

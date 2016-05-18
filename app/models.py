@@ -9,7 +9,7 @@ def _user_loader(user_id):
     return Person.query.get(int(user_id))
 
 class Person(db.Model):
-    #__tablename__ = 'users'
+    ## __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
@@ -18,7 +18,7 @@ class Person(db.Model):
     email = db.Column(db.String(255), unique=True)
     phone_no = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
-    active = db.Column(db.Boolean, default = True)
+    active = db.Column(db.Boolean, default=True)
     registered_at = db.Column(db.DateTime)
 
     def __init__(self, *args, **kwargs):
@@ -72,14 +72,12 @@ class Person(db.Model):
 
 class Recharge(db.Model):
     """docstring for ClassName"""
-    __tablename__ = 'recharges'
+    #__tablename__ = 'recharges'
     id = db.Column(db.Integer, primary_key=True)
     phone_no = db.Column(db.String(255))
-    rec_type = db.Column(db.String(255))
+    email_id = db.Column(db.String(64))
+    recharge_type = db.Column(db.String(255))
     amount = db.Column(db.Integer)
 
-    def __init__(self,phone_no, rec_type, amount):
-        self.phone_no = phone_no
-        self.rec_type = rec_type
-        self.amount = amount
-
+    def __init__(self, *args, **kwargs):
+        super(Recharge, self).__init__(*args, **kwargs)

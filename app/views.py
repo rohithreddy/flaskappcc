@@ -1,10 +1,10 @@
-from flask import flash, redirect, render_template, request, url_for
+from flask import flash,g, redirect, render_template, request, url_for, make_response
 from flask.ext.login import login_user
 
 from app import app,db
 from app import login_manager
 from forms import LoginForm, RegisterForm, RechargeForm
-
+from flask.ext.login import login_required
 from models import Person, Recharge
 
 
@@ -19,11 +19,23 @@ def login():
         if form.validate():
             login_user(form.user, remember = form.remember_me.data)
             flash("Successfully logged in as %s" % form.user.email, "success")
-            return redirect(request.args.get("next") or url_for("homepage"))
+            resp = make_response(redirect(request.args.get("next") or url_for("homepage")))
+            resp.set_cookie("user",form.user.email)
+            return resp
     else:
         form = LoginForm()
         return render_template("login.html", form=form)
 
+@app.route('/logout')
+@login_required
+def logout():
+    """Logout the current user."""
+    user = g.user
+    user.authenticated = False
+    db.session.add(user)
+    db.session.commit()
+    flash("User logged out","logout")
+    return render_template("homepage.html")
 
 @app.route('/register', methods=["GET", "POST"])
 def register_user():
@@ -44,7 +56,7 @@ def register_user():
             return render_template("login.html")
             redirect("login")
         else:
-            form = RegisterForm()
+            form = RegisterForm(request.form)
             return render_template("register.html", form=form)
     else:
         form = RegisterForm()
@@ -52,6 +64,7 @@ def register_user():
 
 
 @app.route('/recharge', methods=["GET", "POST"])
+@login_required
 def recharge():
     if request.method == "POST":
         form = RechargeForm(request.form)
@@ -65,3 +78,19 @@ def recharge():
     else:
         form = RechargeForm()
         return render_template("recharge.html", form=form)
+
+@app.route('/product1')
+@login_required
+def product1():
+    return render_template('product1.html')
+
+
+@app.route('/product2')
+@login_required
+def product2():
+    return render_template('product2.html')
+
+@app.route('/product3')
+@login_required
+def product3():
+    return render_template('product3.html')

@@ -1,12 +1,67 @@
-<div class="container">
-<div class="row">
-<div class="col-md-9">
-<h1>{% block content_title %}{% endblock %}</h1>
-{% for category, message in get_flashed_messages(with_categories=true) %}
-<div class="alert alert-dismissable alert-{{ category }}">
-<button type="button" class="close" data-dismiss="alert">&times;</button>
-{{ message }}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Assembly
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140330
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
+<link href="{{url_for('static',filename='default.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{url_for('static',filename='fonts.css')}}" rel="stylesheet" type="text/css" media="all" />
+<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">Customer Centria</a></h1>
+		</div>
+    <div id="menu">
+      <ul>
+        <li id="b0List" class=""><a href="{{ url_for('homepage')}}" accesskey="1" title="" id="b0" onclick=" tabButton(event)">Homepage</a></li>
+        <li id="b1List"><a href="{{ url_for('recharge')}}" accesskey="2" title=""id="b1" onclick=" tabButton(event)">Recharge</a></li>
+        <li id="b2List"><a href="{{ url_for('product1')}}" accesskey="3" title="" id="b2" onclick=" tabButton(event)">Product1</a></li>
+        <li id="b3List"><a href="{{ url_for('product2')}}" accesskey="4" title="" id="b3" onclick=" tabButton(event)">Product2</a></li>
+        <li id="b4List"><a href="{{ url_for('product3')}}" accesskey="5" title="" id="b4" onclick=" tabButton(event)">Product3</a></li>
+        <li id="b5List"><a href="{{ url_for('logout')}}" accesskey="5" title="" id="b5" onclick=" tabButton(event)">Log Out</a></li>
+      </ul>
+    </div>
+	</div>
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+  <div class="alert alert-dismissable alert-{{ category }}">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ message }}
+  </div>
+  {% endfor %}
+  <div class="container" style="text-align:center">
+    <h1>{% block content_title %}{% endblock %}</h1>
+    <br>
+  {% block content %}
+  {% endblock %}
 </div>
-{% endfor %}
-{% block content %}
-{% endblock %}
+</div>
+<div id="copyright" class="container">
+	<p>&copy; Customer Centria. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+</div>
+<script type="text/javascript">
+function tabButton(event){
+   $("li").removeClass("active");
+   $("#"+event.target.id+"List").addClass("active");
+  }
+</script>
+</body>
+</html>

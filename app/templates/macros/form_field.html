@@ -1,8 +1,8 @@
 {% macro form_field(field) %}
-<div class="form-group{% if field.errors %} has-error has-feedback{%
+<div style="width: 415px;margin: 10px auto;" class="form-group{% if field.errors %} has-error has-feedback{%
 endif %}">
-{{ field.label(class='col-sm-3 control-label') }}
-<div class="col-sm-9">
+{{ field.label(class='col-sm-3 control-label', style='float: left;width: 200px;background: rgba(0, 0, 0, 0.39) none repeat scroll 0% 0%;padding: 6px;') }}
+<div class="col-sm-9" style="float: left;")>
 {{ field(class='form-control', **kwargs) }}
 {% if field.errors %}<span class="glyphicon glyphicon-warning-
 sign form-control-feedback"></span>{% endif %}
@@ -11,5 +11,5 @@ description|safe }}</span>{% endif %}
 {% for error in field.errors %}<span class="help-block">{{ error
 }}</span>{% endfor %}
 </div>
-</div>
+</div><br><br>
 {% endmacro %}

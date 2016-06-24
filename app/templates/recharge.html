@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% from "macros/form_field.html" import form_field %}
-{% block title %}Recharge{% endblock %}
 {% block content_title %}Recharge{% endblock %}
 {% block content %}
 <form action="{{ url_for('recharge', next=request.args.get('next','')) }}" class="form form-horizontal" method="post">
@@ -10,8 +9,8 @@
 {{ form_field(form.amount) }}
 <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-        <button type="submit" class="btn btn-default">Recharge  Now</button>
-        <a class="btn" href="{{ url_for('homepage') }}">Cancel</a>
+        <button type="submit" class="button12 green">Recharge  Now</button>
+        <button type="cancel" class="button12 orange"><a href="{{ url_for('homepage') }}">Cancel</a></button>
     </div>
 </div>
 </form>
